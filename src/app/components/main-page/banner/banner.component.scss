@@ -1,0 +1,88 @@
+.image-background {
+    background-image: url('https://static.zarahome.net/assets/public/8f1f/6347/839940c19603/76aa8e303f54/48680080052-f/48680080052-f.jpg?ts=1727794215510&f=auto&w=1440');
+    background-size: cover;
+    background-position:center;
+    height: 100%;
+    width: 100%;
+    color: rgb(0, 0, 0);
+    margin: auto;
+    display: flex;
+    align-items: center;
+  }
+  
+  .heading{
+    margin-left: 50px;
+    margin-top: 50px;
+    font-size: 2em; 
+    line-height: 1.2; 
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+    
+  }
+  
+  /* Very small devices (small phones, less than 400px) */
+  @media (max-width: 400px) {
+    .image-background {
+      height: 25vh;
+    }
+    .heading {
+      font-size: 1.2em;
+      margin-left: 5%;
+    }
+  }
+  
+  /* Extra small devices (phones, 400px and up but less than 600px) */
+  @media (min-width: 400px) and (max-width: 599px) {
+    .image-background {
+      height: 30vh;
+    }
+    .heading {
+      font-size: 1.4em;
+      margin-left: 5%;
+    }
+  }
+  
+  /* Small devices (portrait tablets and large phones, 600px and up) */
+  @media (min-width: 600px) and (max-width: 768px) {
+    .image-background {
+      height: 45vh;
+      background-position: center;
+    }
+    .heading {
+      font-size: 1.6em;
+      margin-left: 5%;
+    }
+  }
+  
+  /* Medium devices (landscape tablets, 768px and up) */
+  @media (min-width: 769px) and (max-width: 992px) {
+    .image-background {
+      height: 50vh;
+      background-position: center;
+    }
+    .heading {
+      font-size: 2em;
+      margin-left: 50px;
+      margin-top: 50px;
+    }
+  }
+  
+  /* Large devices (laptops/desktops, 992px and up) */
+  @media (min-width: 992px) and (max-width: 1199px) {
+    .image-background {
+      height: 90vh;
+    }
+  }
+  
+  /* Extra large devices (large desktops, 1200px and up) */
+  @media (min-width: 1200px) {
+    .image-background {
+      height: 100vh;
+    }
+    .heading {
+      font-size: 6.5em;
+      margin-left: 5%;
+    }
+  }
+  

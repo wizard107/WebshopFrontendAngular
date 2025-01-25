@@ -8,12 +8,16 @@ import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { MainPageComponent } from './components/main-page/main-page.component';
+import { BannerComponent } from './components/main-page/banner/banner.component';
 @NgModule({
   declarations: [
     AppComponent,
     WebshopComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    MainPageComponent,
+    BannerComponent
   ],
   imports: [
     BrowserModule,
