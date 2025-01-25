@@ -6,10 +6,12 @@ import { AppComponent } from './app.component';
 import { WebshopComponent } from './webshop/webshop.component';
 import { FormsModule } from '@angular/forms';
 import { provideHttpClient } from '@angular/common/http';
+import { HeaderComponent } from './components/header/header.component';
 @NgModule({
   declarations: [
     AppComponent,
-    WebshopComponent
+    WebshopComponent,
+    HeaderComponent
   ],
   imports: [
     BrowserModule,
