@@ -10,11 +10,13 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { BannerComponent } from './components/main-page/banner/banner.component';
-import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
 import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-import { MatCardModule } from '@angular/material/card';
+import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
+import { BedsBannerComponent } from './components/main-page/beds-banner/beds-banner.component';
+import { ChairsBannerComponent } from './components/main-page/chairs-banner/chairs-banner.component';
+import { TablesBannerComponent } from './components/main-page/tables-banner/tables-banner.component';
+
+// Material Components
 
 @NgModule({
   declarations: [
@@ -24,15 +26,15 @@ import { MatCardModule } from '@angular/material/card';
     FooterComponent,
     MainPageComponent,
     BannerComponent,
-    ProductCatalogComponent
+    ProductCatalogComponent,
+    BedsBannerComponent,
+    ChairsBannerComponent,
+    TablesBannerComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule,
-    MatInputModule,
-    MatButtonModule,
-    MatCardModule
+    FormsModule
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]

@@ -1,0 +1,33 @@
+/* filepath: /Users/zuhyunlee/Documents/Zu Hyun Lee/CC/WebshopFrontendAngular/src/app/components/main-page/tables-banner/tables-banner.component.scss */
+
+.img-fluid {
+  border-radius: 5px;
+}
+
+.section-background {
+  background-color: #D0BCAC; /* Add your desired background color here */
+  padding: px; /* Optional: Add some padding for better spacing */
+  border-radius: 10px; /* Optional: Add border radius for rounded corners */
+  justify-content: center;
+  align-items: center;
+}
+
+.image-background2 {
+  padding: 30px; /* Optional: Add some padding for better spacing */
+}
+
+.heading2 {
+  text-align: center; /* Center text within the heading2 div */
+  justify-content: center;
+    font-weight: bold;
+    font-size: 1.3em;
+    color: white;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.button2 {
+  margin-top: 1 rem; /* Add some margin to the button */
+    font-weight: bold;
+    color: black;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
