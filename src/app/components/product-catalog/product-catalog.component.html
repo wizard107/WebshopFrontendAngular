@@ -1,1 +1,32 @@
-<p>product-catalog works!</p>
+<div class="product-catalog-header">
+    <h1>ALL PRODUCTS</h1>
+    <input matInput type="text" placeholder="Search for products" />
+</div>
+
+<div class="products-grid">
+    <div class="product-card" *ngFor="let product of products">
+        <img class="product-image" [src]="product.imageId" alt="Product Image" />
+        <div class="product-info">
+            <h2 class="product-name">{{ product.name }}</h2>
+            <p class="product-price">{{ product.price | currency }}</p>
+        </div>
+    </div>
+</div>
+
+
+<div>
+    <!-- <mat-card class="product-card" *ngFor="let product of products">
+        <mat-card-header>
+            <mat-card-title>{{ product.name }}</mat-card-title>
+            <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
+        </mat-card-header>
+        <img mat-card-image src="{{ product.image }}" alt="Product Image" />
+        <mat-card-content>
+            <p>{{ product.description }}</p>
+        </mat-card-content>
+        <mat-card-actions>
+            <button mat-button>Add to Cart</button>
+        </mat-card-actions>
+    </mat-card> -->
+</div>
+

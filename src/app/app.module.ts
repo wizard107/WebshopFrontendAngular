@@ -11,6 +11,11 @@ import { FooterComponent } from './components/footer/footer.component';
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { BannerComponent } from './components/main-page/banner/banner.component';
 import { ProductCatalogComponent } from './components/product-catalog/product-catalog.component';
+import { provideAnimationsAsync } from '@angular/platform-browser/animations/async';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -24,9 +29,12 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    MatInputModule,
+    MatButtonModule,
+    MatCardModule
   ],
-  providers: [provideHttpClient()],
+  providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
