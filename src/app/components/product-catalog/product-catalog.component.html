@@ -1,10 +1,26 @@
 <div class="product-catalog-header">
     <h1>ALL PRODUCTS</h1>
-    <input matInput type="text" placeholder="Search for products" />
+    <input matInput type="text" placeholder="Search for products" [(ngModel)]="searchText" (keyup.enter)="searchProducts()"/>
+</div>
+
+<div class="product-catalog-info">
+    <p>{{ displayedProducts.length }} Products</p>
+    <div class="sort-container" (click)="toggleDropdown()">
+        <label for="sort-select">Sort By:</label>
+        <div class="custom-dropdown" [class.open]="dropdownOpen">
+            <div class="selected-option">{{ getSelectedOptionLabel() }}</div>
+            <ul class="dropdown-options" *ngIf="dropdownOpen">
+                <li (click)="selectOption('relevance')">Relevance</li>
+                <li (click)="selectOption('alphabetically')">Alphabetically</li>
+                <li (click)="selectOption('priceLowToHigh')">Price: Low to High</li>
+                <li (click)="selectOption('priceHighToLow')">Price: High to Low</li>
+            </ul>
+        </div>
+    </div>
 </div>
 
 <div class="products-grid">
-    <div class="product-card" *ngFor="let product of products">
+    <div class="product-card" *ngFor="let product of displayedProducts">
         <img class="product-image" [src]="product.imageId" alt="Product Image" />
         <div class="product-info">
             <h2 class="product-name">{{ product.name }}</h2>

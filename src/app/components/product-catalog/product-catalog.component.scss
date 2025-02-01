@@ -14,18 +14,36 @@
 }
 
 .product-catalog-header input {
-    margin-bottom: 20px;
+    margin-bottom: 10px;
     width: 100%;
     padding: 10px;
 }
 
+.product-catalog-info {
+    justify-content: space-between;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+    margin-bottom: 10px;
+    font-size: 0.9em;
+}
+
+.product-catalog-info p {
+    // margin: 100;
+    margin: 0px;
+}
+
 .products-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); /* Adjusted min-width to fit 4 products */
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
     gap: 10px;
     width: 100%;
-    max-width: 1200px; 
-    margin: 0 auto; 
+    max-width: 1200px;
+    margin: 0 auto;
     padding: 0 20px;
 }
 
@@ -33,7 +51,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 0px; 
+    padding: 0px;
     border: 0px solid #ccc;
     border-radius: 0;
     // box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
@@ -57,4 +75,64 @@
 .product-price {
     font-size: 1em;
     color: #888;
+}
+
+.sort-container {
+    // margin: 10px 0;
+    align-items: center;
+    gap: 10px;
+    display: flex;
+    cursor: pointer;
+}
+
+.sort-container label {
+    // margin-right: 10px;
+    margin-bottom: 0px;
+}
+
+.custom-dropdown {
+    position: relative;
+    border: 0px solid #ccc;
+    padding: 0px;
+    background-color: white;
+    //font-size: 1.1em;
+    border-radius: 0; /* No rounded borders */
+    min-width: 200px;
+}
+
+.custom-dropdown .selected-option {
+    padding: 10px;
+    background-color: #f9f9f9;
+}
+
+.custom-dropdown.open .selected-option {
+    //border-bottom: 1px solid #ccc; /* Separate from options */
+}
+
+.dropdown-options {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border: 1px solid #ccc;
+    border-top: none;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.dropdown-options li {
+    padding: 12px 15px;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    //font-size: 1.1em;
+}
+
+.dropdown-options li:hover {
+    background-color: #f0f0f0;
+}
+
+/* Close dropdown when clicking outside */
+body {
+    cursor: default;
 }

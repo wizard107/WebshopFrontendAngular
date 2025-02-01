@@ -7,7 +7,7 @@ export class Product {
     description: string;
     category: ProductCategories;
     inventory: Inventory;
-    price?: number;
+    price: number;
     imageId: string;
     color: string;
     material: string;
@@ -18,7 +18,7 @@ export class Product {
 
     constructor(
         id: number, name: string, description: string, category: ProductCategories, inventory: Inventory, 
-        price: number | undefined, imageId: string, color: string, material: string, height: number | undefined,
+        price: number, imageId: string, color: string, material: string, height: number | undefined,
         width: number | undefined, depth: number | undefined, weight: number | undefined
     ) {
         this.id = id;
