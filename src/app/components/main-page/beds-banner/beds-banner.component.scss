@@ -50,3 +50,12 @@
   color: black;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
 }
+
+@media (max-width: 767px) {  /* Adjust this range based on your grid system */
+  .section-background {
+    border-radius: 0;
+  }
+  .img-fluid {
+    border-radius: 0;
+  }
+}

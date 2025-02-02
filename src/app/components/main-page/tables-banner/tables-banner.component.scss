@@ -42,11 +42,18 @@
   line-height: 1.4; /* Improves readability */
   margin-top: 0.5rem; /* Adds spacing from heading */
 }
-
-
 .button2 {
   margin-top: 1rem; /* Fixed: Removed space in '1 rem' */
   font-weight: bold;
   color: black;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 767px) {
+  .section-background {
+    border-radius: 0;
+  }
+  .img-fluid {
+    border-radius: 0;
+  }
 }
