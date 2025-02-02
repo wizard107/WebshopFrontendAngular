@@ -1,33 +1,50 @@
 /* filepath: /Users/zuhyunlee/Documents/Zu Hyun Lee/CC/WebshopFrontendAngular/src/app/components/main-page/tables-banner/tables-banner.component.scss */
+
 .img-fluid {
   border-radius: 5px;
+  width: 100%; /* Ensures image is responsive */
+  height: 100%; /* Ensures it stretches to match the height of the text box */
+  object-fit: cover; /* Prevents distortion */
 }
-.section-background {
-    background-color: #BF9A75; /* Add your desired background color here */
-    padding: 20px; /* Optional: Add some padding for better spacing */
-    border-radius: 5px; /* Optional: Add border radius for rounded corners */
-    justify-content: center;
-    align-items: center;
-    margin-left: -10px;
-  }
-  
-  .image-background2 {
 
-    padding: 30px; /* Optional: Add some padding for better spacing */
-  }
-  
-  .heading2 {
-    text-align: center; /* Center text within the heading2 div */
-    justify-content: center;
-      font-weight: bold;
-      font-size: 1.3em;
-      color: white;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
-  }
-  
-  .button2 {
-    margin-top: 1 rem; /* Add some margin to the button */
-      font-weight: bold;
-      color: black;
-      text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-  }
+.section-background {
+  background-color: #bc5e2b ;
+  padding: 20px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.image-background2 {
+  flex: 1; /* Fills the available space */
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 30px;
+}
+
+.heading2 {
+  text-align: center;
+  font-weight: bold;
+  font-size: clamp(1rem, 2vw, 2rem); /* Dynamically adjusts font size */
+  color: white;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+.heading2 p {
+  font-size: clamp(0.8rem, 1.5vw, 1.2rem); /* Dynamically adjusts */
+  color: white;
+  text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  line-height: 1.4; /* Improves readability */
+  margin-top: 0.5rem; /* Adds spacing from heading */
+}
+
+
+.button2 {
+  margin-top: 1rem; /* Fixed: Removed space in '1 rem' */
+  font-weight: bold;
+  color: black;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
