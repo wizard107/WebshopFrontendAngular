@@ -1,7 +1,7 @@
 .image-background {
   background-image: url('/assets/main-banner-image.jpg');
   background-size: cover;
-  background-position:center;
+  background-position: center;
   height: 100%;
   width: 100%;
   color: rgb(0, 0, 0);
@@ -9,84 +9,28 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  height: 100vh;
 }
 
 .shop-button {
-  font-size: 2em; 
-  line-height: 1.2; 
+  font-size: 3vw;
+  line-height: 1.2;
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
   text-align: center;
   justify-content: center;
+  white-space: nowrap;  // Prevent button text from wrapping
 }
 
-.heading{
-  font-size: 2em; 
+/* Heading adjustments */
+.heading {
+  font-size: 6vw; 
   line-height: 1.2; 
   font-weight: bold;
   color: white;
   text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
   text-align: center;
   justify-content: center;
-}
-
-/* Very small devices (small phones, less than 400px) */
-@media (max-width: 400px) {
-  .image-background {
-    height: 25vh;
-  }
-  .heading {
-    font-size: 1.2em;
-    margin-left: 5%;
-  }
-}
-
-/* Extra small devices (phones, 400px and up but less than 600px) */
-@media (min-width: 400px) and (max-width: 599px) {
-  .image-background {
-    height: 40vh;
-  }
-  .heading {
-    font-size: 1.4em;
-  }
-}
-
-/* Small devices (portrait tablets and large phones, 600px and up) */
-@media (min-width: 600px) and (max-width: 768px) {
-  .image-background {
-    height: 45vh;
-    background-position: center;
-  }
-  .heading {
-    font-size: 1.6em;
-  }
-}
-
-/* Medium devices (landscape tablets, 768px and up) */
-@media (min-width: 769px) and (max-width: 992px) {
-  .image-background {
-    height: 50vh;
-    background-position: center;
-  }
-  .heading {
-    font-size: 2em;
-  }
-}
-
-/* Large devices (laptops/desktops, 992px and up) */
-@media (min-width: 992px) and (max-width: 1199px) {
-  .image-background {
-    height: 90vh;
-  }
-}
-
-/* Extra large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {
-  .image-background {
-    height: 100vh;
-  }
-  .heading {
-    font-size: 6em;
-  }
+  word-wrap: nowrap;  // Allow text to break into new lines
 }
