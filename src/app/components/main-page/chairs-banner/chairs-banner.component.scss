@@ -1,19 +1,21 @@
 /* filepath: /Users/zuhyunlee/Documents/Zu Hyun Lee/CC/WebshopFrontendAngular/src/app/components/main-page/tables-banner/tables-banner.component.scss */
 
 .img-fluid {
-  border-radius: 5px;
   width: 100%; /* Ensures image is responsive */
   height: 100%; /* Ensures it stretches to match the height of the text box */
   object-fit: cover; /* Prevents distortion */
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
 }
 
 .section-background {
   background-color: #5e5e27;
   padding: 20px;
-  border-radius: 5px;
   display: flex;
   align-items: center;
   justify-content: center;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
 }
 
 .image-background2 {
