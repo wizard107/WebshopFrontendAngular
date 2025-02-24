@@ -1,48 +1,77 @@
-<div class="product-catalog-header">
-    <h1>ALL PRODUCTS</h1>
-    <input matInput type="text" placeholder="Search for products" [(ngModel)]="searchText" (keyup.enter)="searchProducts()"/>
-</div>
+<div class="product-catalog-container">
+    <div class="product-catalog-header">
+        <h1>ALL PRODUCTS</h1>
+        <input matInput type="text" placeholder="Search for products" [(ngModel)]="searchText" (keyup.enter)="searchProducts()" />
+    </div>
 
-<div class="product-catalog-info">
-    <p>{{ displayedProducts.length }} Products</p>
-    <div class="sort-container" (click)="toggleDropdown()">
-        <label for="sort-select">Sort By:</label>
-        <div class="custom-dropdown" [class.open]="dropdownOpen">
-            <div class="selected-option">{{ getSelectedOptionLabel() }}</div>
-            <ul class="dropdown-options" *ngIf="dropdownOpen">
-                <li (click)="selectOption('relevance')">Relevance</li>
-                <li (click)="selectOption('alphabetically')">Alphabetically</li>
-                <li (click)="selectOption('priceLowToHigh')">Price: Low to High</li>
-                <li (click)="selectOption('priceHighToLow')">Price: High to Low</li>
-            </ul>
+    <div class="product-catalog-body">
+        <!-- Filter Section (hidden in small Screens, turns into modal) -->
+        <div class="filter-section" [class.hidden]="isSmallScreen">
+            <div class="filter-section-header">
+                <p>Filters</p>
+            </div>  
+            <div class="filter-category" *ngFor="let filter of filters">
+                <div class="filter-header" (click)="toggleFilter(filter.name)">
+                    {{ filter.name }}
+                    <span [class.rotate]="filter.open">&#9662;</span>
+                </div>
+                <div class="filter-options" *ngIf="filter.open">
+                    <label *ngFor="let option of filter.options">
+                        <input type="checkbox" [(ngModel)]="option.selected" (change)="applyFilters()" /> {{ option.name }}
+                    </label>
+                </div>
+            </div>  
+        </div>
+
+        <div class="product-main">
+
+            <!-- Filter Button (visible on small Screens) -->
+            <button class="filter-toggle-btn" (click)="toggleFilterMenu()" *ngIf="isSmallScreen">Filters</button>
+
+            <div class="product-catalog-info">
+                <p>{{ displayedProducts.length }} Products</p>
+                <div class="sort-container" (click)="toggleDropdown()">
+                    <label for="sort-select">Sort By:</label>
+                    <div class="custom-dropdown" [class.open]="dropdownOpen">
+                        <div class="selected-option">{{ getSelectedOptionLabel() }}</div>
+                        <ul class="dropdown-options" *ngIf="dropdownOpen">
+                            <li (click)="selectOption('relevance')">Relevance</li>
+                            <li (click)="selectOption('alphabetically')">Alphabetically</li>
+                            <li (click)="selectOption('priceLowToHigh')">Price: Low to High</li>
+                            <li (click)="selectOption('priceHighToLow')">Price: High to Low</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="products-grid">
+                <div class="product-card" *ngFor="let product of displayedProducts">
+                    <img class="product-image" [src]="product.imageId" alt="Product Image" />
+                    <div class="product-info">
+                        <h2 class="product-name">{{ product.name }}</h2>
+                        <p class="product-price">{{ product.price | currency }}</p>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
-<div class="products-grid">
-    <div class="product-card" *ngFor="let product of displayedProducts">
-        <img class="product-image" [src]="product.imageId" alt="Product Image" />
-        <div class="product-info">
-            <h2 class="product-name">{{ product.name }}</h2>
-            <p class="product-price">{{ product.price | currency }}</p>
+<!-- Filter Modal (only shown on small screens) -->
+<div class="filter-modal" *ngIf="filterMenuOpen">
+    <div class="filter-modal-content">
+        <button class="close-btn" (click)="toggleFilterMenu()">×</button>
+        <h3>Filters</h3>
+        <div class="filter-category" *ngFor="let filter of filters">
+            <div class="filter-header" (click)="toggleFilter(filter.name)">
+                {{ filter.name }}
+                <span [class.rotate]="filter.open">&#9662;</span>
+            </div>
+            <div class="filter-options" *ngIf="filter.open">
+                <label *ngFor="let option of filter.options">
+                    <input type="checkbox" [(ngModel)]="option.selected" (change)="applyFilters()" /> {{ option.name }}
+                </label>
+            </div>
         </div>
     </div>
 </div>
-
-
-<div>
-    <!-- <mat-card class="product-card" *ngFor="let product of products">
-        <mat-card-header>
-            <mat-card-title>{{ product.name }}</mat-card-title>
-            <mat-card-subtitle>{{ product.price }}</mat-card-subtitle>
-        </mat-card-header>
-        <img mat-card-image src="{{ product.image }}" alt="Product Image" />
-        <mat-card-content>
-            <p>{{ product.description }}</p>
-        </mat-card-content>
-        <mat-card-actions>
-            <button mat-button>Add to Cart</button>
-        </mat-card-actions>
-    </mat-card> -->
-</div>
-
