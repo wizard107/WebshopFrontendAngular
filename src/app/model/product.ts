@@ -17,7 +17,7 @@ export class Product {
     weight?: number;
 
     constructor(
-        id: number, name: string, description: string, category: ProductCategories, inventory: Inventory, 
+        id: number, name: string, description: string, category: ProductCategories, inventory: Inventory,
         price: number, imageId: string, color: string, material: string, height: number | undefined,
         width: number | undefined, depth: number | undefined, weight: number | undefined
     ) {

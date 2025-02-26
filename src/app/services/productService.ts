@@ -1,11 +1,8 @@
 import {Product} from '../model/product';
 import {Injectable} from '@angular/core';
-import {Inventory} from '../model/inventory';
 import {ProductCategories} from '../model/enums/product-categories';
+import {Inventory} from '../model/inventory';
 import {Observable, of} from 'rxjs';
-
-
-
 
 
 @Injectable({
