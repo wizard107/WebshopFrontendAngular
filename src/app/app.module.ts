@@ -15,6 +15,7 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
 import { BedsBannerComponent } from './components/main-page/beds-banner/beds-banner.component';
 import { ChairsBannerComponent } from './components/main-page/chairs-banner/chairs-banner.component';
 import { TablesBannerComponent } from './components/main-page/tables-banner/tables-banner.component';
+import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 
 // Material Components
 
@@ -29,7 +30,8 @@ import { TablesBannerComponent } from './components/main-page/tables-banner/tabl
     ProductCatalogComponent,
     BedsBannerComponent,
     ChairsBannerComponent,
-    TablesBannerComponent
+    TablesBannerComponent,
+    ShoppingCartComponent
   ],
   imports: [
     BrowserModule,
