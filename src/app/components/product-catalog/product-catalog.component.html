@@ -1,7 +1,12 @@
 <div class="product-catalog-container">
     <div class="product-catalog-header">
         <h1>ALL PRODUCTS</h1>
-        <input matInput type="text" placeholder="Search for products" [(ngModel)]="searchText" (keyup.enter)="searchProducts()" />
+        <div class="search-container">
+            <input matInput type="text" placeholder="Search for products" [(ngModel)]="searchText" (keyup.enter)="searchProducts()" />
+            <button class="search-button" (click)="searchProducts()">
+                <img src="assets/icons/white_search.png" alt="Search" class="search-icon" />
+            </button>
+        </div>
     </div>
 
     <div class="product-catalog-body">
@@ -53,6 +58,14 @@
                     </div>
                 </div>
             </div>
+            
+             <!-- Not Found Section -->
+            <div class="not-found" *ngIf="displayedProducts.length === 0">
+                <img src="assets/icons/not_found.png" alt="Not Found" class="not-found-image" />
+                <p class="not-found-message">No Products Found</p>
+                <p class="not-found-submessage">Your search or filter did not match any products</p>
+            </div>
+
         </div>
     </div>
 </div>

@@ -11,15 +11,15 @@ export class Product {
     imageId: string;
     color: string;
     material: string;
-    height?: number;
-    width?: number;
-    depth?: number;
-    weight?: number;
+    height: number;
+    width: number;
+    depth: number;
+    weight: number;
 
     constructor(
         id: number, name: string, description: string, category: ProductCategories, inventory: Inventory, 
-        price: number, imageId: string, color: string, material: string, height: number | undefined,
-        width: number | undefined, depth: number | undefined, weight: number | undefined
+        price: number, imageId: string, color: string, material: string, height: number,
+        width: number, depth: number, weight: number
     ) {
         this.id = id;
         this.name = name;
