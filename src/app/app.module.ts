@@ -16,10 +16,12 @@ import { BedsBannerComponent } from './components/main-page/beds-banner/beds-ban
 import { ChairsBannerComponent } from './components/main-page/chairs-banner/chairs-banner.component';
 import { TablesBannerComponent } from './components/main-page/tables-banner/tables-banner.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
-import {ProductDetailComponent} from './components/product-detail/product-detail.component';
+import { ProductDetailComponent } from './components/product-detail/product-detail.component';
 import { CheckoutComponent } from './components/checkout/checkout.component';
 import { AddressComponent } from './components/checkout/address/address.component';
 import { PaymentComponent } from './components/checkout/payment/payment.component';
+import { OrderReviewComponent } from './components/order-review/order-review.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
 
 // Material Components
 
@@ -39,7 +41,9 @@ import { PaymentComponent } from './components/checkout/payment/payment.componen
     ProductDetailComponent,
     CheckoutComponent,
     AddressComponent,
-    PaymentComponent
+    PaymentComponent,
+    OrderReviewComponent,
+    OrderConfirmationComponent
   ],
   imports: [
     BrowserModule,
