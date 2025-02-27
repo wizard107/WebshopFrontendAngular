@@ -36,6 +36,10 @@ export class ProductDetailComponent implements OnInit {
     });
   }
 
+  getProductImageUrl(productId: number): string {
+    return this.productService.getProductImageUrl(productId);
+  }
+
   getFallbackProduct(): {
     imageId: string;
     color: string;

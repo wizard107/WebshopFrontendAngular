@@ -22,6 +22,7 @@ import { AddressComponent } from './components/checkout/address/address.componen
 import { PaymentComponent } from './components/checkout/payment/payment.component';
 import { OrderReviewComponent } from './components/order-review/order-review.component';
 import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import { HttpClientModule } from '@angular/common/http';
 
 // Material Components
 
@@ -48,7 +49,8 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpClientModule
   ],
   providers: [provideHttpClient(), provideAnimationsAsync()],
   bootstrap: [AppComponent]

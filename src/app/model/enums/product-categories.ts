@@ -3,5 +3,7 @@ export enum ProductCategories {
     TABLES,
     BEDROOM_FURNITURE,
     DESKS,
-    OUTDOOR_FURNITURE
+    OUTDOOR_FURNITURE,
+    BEDS,
+    CHAIRS
 }

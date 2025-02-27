@@ -1,6 +1,6 @@
 <div class="product-catalog-container">
     <div class="product-catalog-header">
-        <h1>ALL PRODUCTS</h1>
+        <h1>{{ categoryTitle }}</h1>
         <div class="search-container">
             <input matInput type="text" placeholder="Search for products" [(ngModel)]="searchText" (keyup.enter)="searchProducts()" />
             <button class="search-button" (click)="searchProducts()">
@@ -10,8 +10,13 @@
     </div>
 
     <div class="product-catalog-body">
+        <!-- Loading indicator -->
+        <div class="loading-container" *ngIf="products.length === 0">
+            <p>Loading products...</p>
+        </div>
+
         <!-- Filter Section (hidden in small Screens, turns into modal) -->
-        <div class="filter-section" [class.hidden]="isSmallScreen">
+        <div class="filter-section" [class.hidden]="isSmallScreen" *ngIf="products.length > 0">
             <div class="filter-section-header">
                 <p>Filters</p>
             </div>
@@ -28,8 +33,7 @@
             </div>
         </div>
 
-        <div class="product-main">
-
+        <div class="product-main" *ngIf="products.length > 0">
             <!-- Filter Button (visible on small Screens) -->
             <button class="filter-toggle-btn" (click)="toggleFilterMenu()" *ngIf="isSmallScreen">Filters</button>
 
@@ -51,7 +55,7 @@
 
             <div class="products-grid">
                 <div class="product-card" *ngFor="let product of displayedProducts">
-                    <img class="product-image" [src]="product.imageId" alt="Product Image" />
+                    <img class="product-image" [src]="getProductImageUrl(product.id)" alt="{{ product.name }}" />
                     <div class="product-info">
                         <h2 class="product-name">
                             <a [routerLink]="['/product', product.id]"> {{ product.name }}</a></h2>
@@ -60,7 +64,7 @@
                 </div>
             </div>
 
-             <!-- Not Found Section -->
+            <!-- Not Found Section -->
             <div class="not-found" *ngIf="displayedProducts.length === 0">
                 <img src="assets/icons/not_found.png" alt="Not Found" class="not-found-image" />
                 <p class="not-found-message">No Products Found</p>
@@ -89,4 +93,3 @@
         </div>
     </div>
 </div>
-

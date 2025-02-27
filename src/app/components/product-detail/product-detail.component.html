@@ -2,7 +2,7 @@
   <div class="product-container">
     <!-- Left Column: Product Image -->
     <div class="product-image-container">
-      <img [src]="product.imageId" alt="{{ product.name }}" class="product-image">
+      <img class="product-image" [src]="getProductImageUrl(product.id)" alt="{{ product.name }}" />
     </div>
 
     <!-- Right Column: Product Details -->
@@ -10,11 +10,11 @@
       <h1>{{ product.name }}</h1>
       <p class="product-description">{{ product.description }}</p>
 
-      <p><strong>Kategorie:</strong> {{ product.category || 'Nicht angegeben' }}</p>
-      <p><strong>Material:</strong> {{ product.material || 'Nicht angegeben' }}</p>
-      <p><strong>Farbe:</strong> {{ product.color || 'Nicht angegeben' }}</p>
-      <p><strong>Maße:</strong> {{ product.height || 'Nicht angegeben' }} x {{ product.width || 'Nicht angegeben' }} x {{ product.depth || 'Nicht angegeben' }} cm</p>
-      <p><strong>Gewicht:</strong> {{ product.weight || 'Nicht angegeben' }} kg</p>
+      <p><strong>Category:</strong> {{ product.category || 'Not specified' }}</p>
+      <p><strong>Material:</strong> {{ product.material || 'Not specified' }}</p>
+      <p><strong>Color:</strong> {{ product.color || 'Not specified' }}</p>
+      <p><strong>Dimensions:</strong> {{ product.height || 'Not specified' }} x {{ product.width || 'Not specified' }} x {{ product.depth || 'Not specified' }} cm</p>
+      <p><strong>Weight:</strong> {{ product.weight || 'Not specified' }} kg</p>
 
       <p><strong>Verfügbarkeit:</strong>
         <span [ngClass]="{'available': product.inventory && product.inventory.stock > 0, 'out-of-stock': product.inventory && product.inventory.stock === 0}">
@@ -22,13 +22,13 @@
       </p>
 
       <p class="product-price"> {{ product.price | currency }}</p>
-      <button class="add-to-cart-button">🛒 In den Warenkorb</button>
+      <button class="add-to-cart-button">🛒 Add to Cart</button>
     </div>
   </div>
 </div>
 
 <!-- If no product is found -->
 <div *ngIf="!product" class="no-product">
-  <p>Produkt nicht gefunden!</p>
-  <a routerLink="/" class="back-button">Zurück zur Startseite</a>
+  <p>Product not found!</p>
+  <a routerLink="/" class="back-button">Back to Mainpage</a>
 </div>
