@@ -17,6 +17,9 @@ import { ChairsBannerComponent } from './components/main-page/chairs-banner/chai
 import { TablesBannerComponent } from './components/main-page/tables-banner/tables-banner.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import {ProductDetailComponent} from './components/product-detail/product-detail.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AddressComponent } from './components/checkout/address/address.component';
+import { PaymentComponent } from './components/checkout/payment/payment.component';
 
 // Material Components
 
@@ -33,8 +36,10 @@ import {ProductDetailComponent} from './components/product-detail/product-detail
     ChairsBannerComponent,
     TablesBannerComponent,
     ShoppingCartComponent,
-    TablesBannerComponent,
-    ProductDetailComponent
+    ProductDetailComponent,
+    CheckoutComponent,
+    AddressComponent,
+    PaymentComponent
   ],
   imports: [
     BrowserModule,

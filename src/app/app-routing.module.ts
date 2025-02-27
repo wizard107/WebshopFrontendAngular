@@ -4,13 +4,15 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
 import { MainPageComponent } from './components/main-page/main-page.component';
 import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
 import {ProductDetailComponent} from './components/product-detail/product-detail.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
 
 const routes: Routes = [
   { path: '',  component:  MainPageComponent },
   { path: 'product-catalog', component: ProductCatalogComponent },
   { path: 'shopping-cart', component: ShoppingCartComponent },
   { path: 'product-catalog', component: ProductCatalogComponent },
-  { path: 'product/:id', component: ProductDetailComponent }
+  { path: 'product/:id', component: ProductDetailComponent },
+  { path: 'checkout', component: CheckoutComponent }
 ];
 
 @NgModule({
