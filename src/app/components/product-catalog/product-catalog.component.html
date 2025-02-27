@@ -14,7 +14,7 @@
         <div class="filter-section" [class.hidden]="isSmallScreen">
             <div class="filter-section-header">
                 <p>Filters</p>
-            </div>  
+            </div>
             <div class="filter-category" *ngFor="let filter of filters">
                 <div class="filter-header" (click)="toggleFilter(filter.name)">
                     {{ filter.name }}
@@ -25,7 +25,7 @@
                         <input type="checkbox" [(ngModel)]="option.selected" (change)="applyFilters()" /> {{ option.name }}
                     </label>
                 </div>
-            </div>  
+            </div>
         </div>
 
         <div class="product-main">
@@ -58,7 +58,7 @@
                     </div>
                 </div>
             </div>
-            
+
              <!-- Not Found Section -->
             <div class="not-found" *ngIf="displayedProducts.length === 0">
                 <img src="assets/icons/not_found.png" alt="Not Found" class="not-found-image" />
@@ -88,3 +88,4 @@
         </div>
     </div>
 </div>
+
