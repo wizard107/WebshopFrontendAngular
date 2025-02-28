@@ -1,1 +1,76 @@
-<p>order-review works!</p>
+<div class="checkout-container">
+    <div class="checkout-section">
+      <h2>Order Review</h2>
+      
+      <!-- Address Review Section -->
+      <div class="review-container">
+        <h3>Delivery Information</h3>
+        <div class="review-details">
+          <div class="review-group">
+            <span class="label">Email:</span>
+            <span class="value">{{ addressData.mail }}</span>
+          </div>
+          <div class="review-group">
+            <span class="label">Name:</span>
+            <span class="value">{{ addressData.firstName }} {{ addressData.lastName }}</span>
+          </div>
+          <div class="review-group">
+            <span class="label">Address:</span>
+            <span class="value">{{ addressData.addressLine1 }}</span>
+          </div>
+          <div class="review-group" *ngIf="addressData.addressLine2">
+            <span class="label">Address Line 2:</span>
+            <span class="value">{{ addressData.addressLine2 }}</span>
+          </div>
+          <div class="review-group">
+            <span class="label">City, State, Zip:</span>
+            <span class="value">{{ addressData.city }}, {{ addressData.state }} {{ addressData.zipCode }}</span>
+          </div>
+          <div class="review-group">
+            <span class="label">Country:</span>
+            <span class="value">{{ addressData.country }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Payment Review Section -->
+      <div class="review-container">
+        <h3>Payment Information</h3>
+        <div class="review-details">
+          <div class="review-group">
+            <span class="label">Card Holder:</span>
+            <span class="value">{{ paymentData.cardHolder }}</span>
+          </div>
+          <div class="review-group">
+            <span class="label">Card Number:</span>
+            <span class="value">**** **** **** {{ lastFourDigits() }}</span>
+          </div>
+          <div class="review-group">
+            <span class="label">Expiry Date:</span>
+            <span class="value">{{ paymentData.expiryDate }}</span>
+          </div>
+        </div>
+      </div>
+      
+      <div class="button-group">
+        <button class="backs" [routerLink]="['/checkout']">Back to Checkout</button>
+        <button class="confirm" (click)="placeOrder()">Submit Final Order</button>
+      </div>
+    </div>
+    
+    <div class="cart-section">
+      <h2>Cart Items</h2>
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="getProductImageUrl(item.product.id)" alt="{{ item.product.name }}" class="item-image" />
+        <div class="item-details">
+          <h3 class="name">{{ item.product.name }}</h3>
+          <p class="price">${{ item.product.price.toFixed(2) }}</p>
+          <p class="quantity">Quantity: {{ item.quantity }}</p>
+        </div>
+        <p class="total">${{ (item.product.price * item.quantity).toFixed(2) }}</p>
+      </div>
+      <div class="order-total">
+        <h2>Order Total: <span>${{ getTotalPrice() }}</span></h2>
+      </div>
+    </div>
+  </div>

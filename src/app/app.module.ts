@@ -23,7 +23,8 @@ import { OrderConfirmationComponent } from './components/order-confirmation/orde
 import {ProductDetailComponent} from './components/product-detail/product-detail.component';
 import {CartService} from './services/CartService';
 import {CommonModule} from '@angular/common';
-
+import { ProductService } from './services/productService';
+import { CheckoutService } from './services/checkoutService';
 // Material Components
 
 @NgModule({
@@ -52,7 +53,8 @@ import {CommonModule} from '@angular/common';
     FormsModule,
     CommonModule
   ],
-  providers: [provideHttpClient(), provideAnimationsAsync(),CartService,],
+  providers: [provideHttpClient(), provideAnimationsAsync(),CartService,    ProductService,
+    CheckoutService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,41 +1,62 @@
 <div class="address-container">
-    <h3>Delievery</h3>
-    <form>
-      <div class="form-group">
-        <label for="mail">Mail</label>
-        <input type="text" id="mail" name="mail" required>
+  <h3>Delivery</h3>
+  <form>
+    <div class="form-group">
+      <label for="mail">Email</label>
+      <input type="email" id="mail" name="mail" [(ngModel)]="addressData.mail" required>
+      <div class="error-message" *ngIf="mailInvalid">
+        Please enter a valid email address
       </div>
-      <div class="form-group">
-        <label for="firstName">First Name</label>
-        <input type="text" id="firstName" name="firstName" required>
+    </div>
+    <div class="form-group">
+      <label for="firstName">First Name</label>
+      <input type="text" id="firstName" name="firstName" [(ngModel)]="addressData.firstName" required>
+      <div class="error-message" *ngIf="firstNameInvalid">
+        First name is required
       </div>
-      <div class="form-group">
-        <label for="fullName">Last Name</label>
-        <input type="text" id="lastName" name="lastName" required>
+    </div>
+    <div class="form-group">
+      <label for="lastName">Last Name</label>
+      <input type="text" id="lastName" name="lastName" [(ngModel)]="addressData.lastName" required>
+      <div class="error-message" *ngIf="lastNameInvalid">
+        Last name is required
       </div>
-      <div class="form-group">
-        <label for="addressLine1">Address Line 1</label>
-        <input type="text" id="addressLine1" name="addressLine1" required>
+    </div>
+    <div class="form-group">
+      <label for="addressLine1">Address Line 1</label>
+      <input type="text" id="addressLine1" name="addressLine1" [(ngModel)]="addressData.addressLine1" required>
+      <div class="error-message" *ngIf="addressLine1Invalid">
+        Address is required
       </div>
-      <div class="form-group">
-        <label for="addressLine2">Address Line 2</label>
-        <input type="text" id="addressLine2" name="addressLine2">
+    </div>
+    <div class="form-group">
+      <label for="addressLine2">Address Line 2</label>
+      <input type="text" id="addressLine2" name="addressLine2" [(ngModel)]="addressData.addressLine2">
+    </div>
+    <div class="form-group">
+      <label for="city">City</label>
+      <input type="text" id="city" name="city" [(ngModel)]="addressData.city" required>
+      <div class="error-message" *ngIf="cityInvalid">
+        City is required
       </div>
-      <div class="form-group">
-        <label for="city">City</label>
-        <input type="text" id="city" name="city" required>
+    </div>
+    <div class="form-group">
+      <label for="state">State</label>
+      <input type="text" id="state" name="state" [(ngModel)]="addressData.state" required>
+    </div>
+    <div class="form-group">
+      <label for="zipCode">Zip Code</label>
+      <input type="text" id="zipCode" name="zipCode" [(ngModel)]="addressData.zipCode" required>
+      <div class="error-message" *ngIf="zipCodeInvalid">
+        Zip code is required
       </div>
-      <div class="form-group">
-        <label for="state">State</label>
-        <input type="text" id="state" name="state" required>
+    </div>
+    <div class="form-group">
+      <label for="country">Country</label>
+      <input type="text" id="country" name="country" [(ngModel)]="addressData.country" required>
+      <div class="error-message" *ngIf="countryInvalid">
+        Country is required
       </div>
-      <div class="form-group">
-        <label for="zipCode">Zip Code</label>
-        <input type="text" id="zipCode" name="zipCode" required>
-      </div>
-      <div class="form-group">
-        <label for="country">Country</label>
-        <input type="text" id="country" name="country" required>
-      </div>
-    </form>
-  </div>
+    </div>
+  </form>
+</div>
