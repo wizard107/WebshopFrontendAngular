@@ -11,18 +11,34 @@ export class ProductService {
   baseImageUrl = 'https://storage.googleapis.com/webshop-images/products/';
 
   constructor(private http: HttpClient) {}
-
-  // Methode zum Abrufen aller Produkte
+  // 🔹 GET: Alle Produkte abrufen
   getAllProducts(): Observable<Product[]> {
     return this.http.get<Product[]>(`${this.baseUrl}/getAll`);
   }
 
-  // Methode zum Abrufen eines Produkts nach ID
-  getProductById(id: number): Observable<Product | null> {
+  // 🔹 GET: Einzelnes Produkt nach ID abrufen
+  getProductById(id: number): Observable<Product> {
     return this.http.get<Product>(`${this.baseUrl}/${id}`);
   }
 
+  // 🔹 POST: Neues Produkt speichern
+  saveProduct(product: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.baseUrl}/save`, product);
+  }
+
+  // 🔹 POST: Produkt aktualisieren
+  updateProduct(id: number, product: Product): Observable<Product> {
+    return this.http.post<Product>(`${this.baseUrl}/update/${id}`, product);
+  }
+
+  // 🔹 DELETE: Produkt löschen
+  deleteProduct(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
+  }
   getProductImageUrl(productId: number): string {
     return `${this.baseImageUrl}${productId}/image1.jpg`;
   }
 }
+
+
+

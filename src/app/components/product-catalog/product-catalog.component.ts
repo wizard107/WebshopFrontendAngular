@@ -1,9 +1,8 @@
 import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../model/product';
-import { Inventory } from '../../model/inventory';
 import { ProductCategories } from '../../model/enums/product-categories';
-import { ProductService } from '../../services/productService';
+import {ProductService} from '../../services/productService';
 
 @Component({
   selector: 'app-product-catalog',
@@ -14,10 +13,12 @@ import { ProductService } from '../../services/productService';
 export class ProductCatalogComponent implements OnInit {
 
   products: Product[] = [];
-  displayedProducts: Product[] = [];
-  filteredProducts: Product[] = [];
   baseImageUrl = 'https://storage.googleapis.com/webshop-images/products/';
   categoryTitle: string = 'ALL PRODUCTS';
+
+
+  displayedProducts = this.products.slice();
+  filteredProducts = this.products.slice();
 
   // Variables
   searchText = "";
@@ -52,7 +53,7 @@ export class ProductCatalogComponent implements OnInit {
   ngOnInit() {
     this.loadProducts();
     this.isSmallScreen = window.innerWidth <= 768;
-    
+
     // Subscribe to query params to handle category filtering from navigation
     this.route.queryParams.subscribe(params => {
       const category = params['category'];
@@ -73,7 +74,7 @@ export class ProductCatalogComponent implements OnInit {
         this.products = data;
         this.displayedProducts = this.products.slice();
         this.filteredProducts = this.products.slice();
-        
+
         // Check for category query param again here to ensure products are loaded
         this.route.queryParams.subscribe(params => {
           const category = params['category'];
@@ -87,11 +88,11 @@ export class ProductCatalogComponent implements OnInit {
       }
     });
   }
-  
+
   handleCategoryFilter(category: string) {
     // Set the category title
     this.categoryTitle = category.toUpperCase();
-    
+
     // Map the URL parameter to the enum value
     const categoryMap: { [key: string]: ProductCategories } = {
       'tables': ProductCategories.TABLES,
@@ -101,26 +102,26 @@ export class ProductCatalogComponent implements OnInit {
       'desks': ProductCategories.DESKS,
       'bedroom-furniture': ProductCategories.BEDROOM_FURNITURE
     };
-    
+
     const categoryEnum = categoryMap[category.toLowerCase()];
-    
+
     if (categoryEnum) {
       // Filter the products by category
       this.filteredProducts = this.products.filter(product => product.category === categoryEnum);
       this.displayedProducts = this.filteredProducts.slice();
-      
+
       // Optionally, also set the category filter checkbox
       const categoryFilter = this.filters.find(f => f.name === 'Category');
       if (categoryFilter) {
         // Reset all category options
         categoryFilter.options.forEach(option => option.selected = false);
-        
+
         // Find the matching option and select it
-        const categoryOption = categoryFilter.options.find(option => 
-          option.name.toLowerCase() === category.toLowerCase() || 
+        const categoryOption = categoryFilter.options.find(option =>
+          option.name.toLowerCase() === category.toLowerCase() ||
           (category.toLowerCase() === 'beds' && option.name === 'Bedroom Furniture')
         );
-        
+
         if (categoryOption) {
           categoryOption.selected = true;
         }
@@ -131,7 +132,7 @@ export class ProductCatalogComponent implements OnInit {
       this.displayedProducts = this.products.slice();
     }
   }
-  
+
   getProductImageUrl(productId: number): string {
     return this.productService.getProductImageUrl(productId);
   }
@@ -201,7 +202,7 @@ export class ProductCatalogComponent implements OnInit {
   }
 
   applyFilters() {
-    this.displayedProducts = this.filteredProducts.filter(product => { 
+    this.displayedProducts = this.filteredProducts.filter(product => {
       return this.filters.every(filter => {
         const selectedOptions = filter.options.filter(option => option.selected).map(option => option.name);
         if (selectedOptions.length === 0) {

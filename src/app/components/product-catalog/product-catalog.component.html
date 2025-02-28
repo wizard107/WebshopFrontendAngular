@@ -10,13 +10,8 @@
     </div>
 
     <div class="product-catalog-body">
-        <!-- Loading indicator -->
-        <div class="loading-container" *ngIf="products.length === 0">
-            <p>Loading products...</p>
-        </div>
-
         <!-- Filter Section (hidden in small Screens, turns into modal) -->
-        <div class="filter-section" [class.hidden]="isSmallScreen" *ngIf="products.length > 0">
+        <div class="filter-section" [class.hidden]="isSmallScreen">
             <div class="filter-section-header">
                 <p>Filters</p>
             </div>
@@ -58,7 +53,7 @@
                     <img class="product-image" [src]="getProductImageUrl(product.id)" alt="{{ product.name }}" />
                     <div class="product-info">
                         <h2 class="product-name">
-                            <a [routerLink]="['/product', product.id]"> {{ product.name }}</a></h2>
+                          <a [routerLink]="['/product', product.id]"> {{ product.name }}</a></h2>
                         <p class="product-price">{{ product.price | currency }}</p>
                     </div>
                 </div>

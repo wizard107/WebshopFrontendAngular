@@ -3,6 +3,7 @@ import {Product} from '../../model/product';
 import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../../services/productService';
 import {Observable} from 'rxjs';
+import {CartService} from "../../services/CartService";
 
 @Component({
   selector: 'app-product-detail',
@@ -13,10 +14,12 @@ import {Observable} from 'rxjs';
 })
 export class ProductDetailComponent implements OnInit {
   product: Observable<Product | null> | undefined;
+  quantity: number = 1;
 
   constructor(
     private route: ActivatedRoute,
-    private productService: ProductService
+    private productService: ProductService,
+    private cartService: CartService
   ) {}
 
   ngOnInit(): void {
@@ -60,4 +63,21 @@ export class ProductDetailComponent implements OnInit {
       imageId: 'assets/placeholder.jpg'
     };
   }
+  addToCart(product: Product): void {
+    console.log("add to cart", product);
+    this.cartService.addToCart(product);
+    alert('Produkt wurde dem Warenkorb hinzugefügt!');
+  }
+  // Increment quantity
+  incrementQuantity(): void {
+    this.quantity++;
+  }
+
+  // Decrement quantity
+  decrementQuantity(): void {
+    if (this.quantity > 1) {
+      this.quantity--;
+    }
+  }
+
 }
