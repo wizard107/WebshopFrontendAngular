@@ -3,6 +3,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import {CartItem, CartService} from '../../services/CartService';
 import {CommonModule} from '@angular/common';
+import { ProductService } from '../../services/productService';
 
 @Component({
   selector: 'app-shopping-cart',
@@ -15,7 +16,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   cartItems: CartItem[] = [];
   private cartSubscription: Subscription | null = null;
 
-  constructor(private cartService: CartService) {}
+  constructor(private cartService: CartService, private productService: ProductService) {}
 
   ngOnInit(): void {
     // Subscribe to cart items changes
@@ -53,5 +54,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
       total += item.product.price * item.quantity;
     }
     return total.toFixed(2);
+  }
+
+  getProductImageUrl(productId: number): string {
+    return this.productService.getProductImageUrl(productId);
   }
 }
