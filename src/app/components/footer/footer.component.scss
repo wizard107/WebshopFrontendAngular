@@ -2,3 +2,47 @@ h5, p {
     text-align: left;
   }
   
+
+  /* Default font sizes */
+footer {
+  font-size: 16px; /* Base font size */
+}
+
+footer h5 {
+  font-size: 18px;
+  font-weight: bold;
+}
+
+footer p {
+  font-size: 14px;
+}
+
+/* Medium screens (Tablets) */
+@media (max-width: 992px) {
+  footer {
+    font-size: 14px;
+  }
+  
+  footer h5 {
+    font-size: 16px;
+  }
+  
+  footer p {
+    font-size: 13px;
+  }
+}
+
+/* Small screens (Phones) */
+@media (max-width: 768px) {
+  footer {
+    font-size: 12px;
+  }
+  
+  footer h5 {
+    font-size: 14px;
+  }
+  
+  footer p {
+    font-size: 12px;
+  }
+}
