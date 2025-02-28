@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from '@angular/router';
 import {ProductService} from '../../services/productService';
 import {Observable} from 'rxjs';
 import {CartService} from "../../services/CartService";
+import { ProductCategories } from '../../model/enums/product-categories';
 
 @Component({
   selector: 'app-product-detail',
@@ -78,6 +79,19 @@ export class ProductDetailComponent implements OnInit {
     if (this.quantity > 1) {
       this.quantity--;
     }
+  }
+
+  formatCategory(category: any): string {
+    if (category === undefined || category === null) return 'Not specified';
+    
+    // Get the string representation of the enum value
+    const categoryString = String(category);
+    
+    // Replace underscores with spaces and format properly
+    return categoryString
+      .split('_')
+      .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+      .join(' ');
   }
 
 }
