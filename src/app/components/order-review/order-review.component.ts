@@ -4,6 +4,12 @@ import { Subscription } from 'rxjs';
 import { CartItem, CartService } from '../../services/CartService';
 import { ProductService } from '../../services/productService';
 import { CheckoutService } from '../../services/checkoutService';
+import { OrderService } from '../../services/orderService';
+import { OrderDetails, OrderDetailsDTO } from '../../model/order-details';
+import { OrderStatus } from '../../model/enums/order-status';
+import { PaymentMethod } from '../../model/enums/payment-method';
+import { PaymentStatus } from '../../model/enums/payment-status';
+import { ProductDTO } from '../../model/product';
 
 interface AddressData {
   mail: string;
@@ -54,6 +60,7 @@ export class OrderReviewComponent implements OnInit, OnDestroy {
     private cartService: CartService, 
     private productService: ProductService, 
     private checkoutService: CheckoutService,
+    private orderService: OrderService,
     private router: Router
   ) {}
 
@@ -98,13 +105,33 @@ export class OrderReviewComponent implements OnInit, OnDestroy {
   }
   
   placeOrder(): void {
-    // Implement order placement logic here
-    alert('Your order has been placed successfully!');
-    // You would typically:
-    // 1. Send order data to your backend
-    // 2. Clear the cart
-    // 3. Navigate to an order confirmation page
-    this.cartService.clearCart();
-    this.router.navigate(['/order-confirmation']);
+    // Create ProductDTOs array
+    const products = this.cartItems.map(item => new ProductDTO(item.product.id, item.quantity));
+
+    // Create OrderDetails object
+    const orderDetails = new OrderDetailsDTO(
+      Date.now().toString(),
+      parseFloat(this.getTotalPrice()),
+      'USD', // Currency
+      `${this.addressData.addressLine1}, ${this.addressData.city}, ${this.addressData.state}, ${this.addressData.zipCode}, ${this.addressData.country}`, // Shipping address
+      5,
+      OrderStatus.IN_PROCESS,
+      PaymentStatus.PAID,
+      PaymentMethod.CREDIT_CARD,
+      products
+    );
+
+    // Save order to the database
+    this.orderService.saveOrder(orderDetails).subscribe({
+      next: (response) => {
+        alert('Your order has been placed successfully!');
+        this.cartService.clearCart();
+        this.router.navigate(['/order-confirmation']);
+      },
+      error: (error) => {
+        console.error('Error placing order:', error);
+        alert('There was an error placing your order. Please try again.');
+      }
+    });
   }
 }

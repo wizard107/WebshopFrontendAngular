@@ -1,19 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { OrderDetails } from '../model/order-details';
+import { OrderDetails, OrderDetailsDTO } from '../model/order-details';
 
 @Injectable({
   providedIn: 'root'
 })
 export class OrderService {
-  private baseUrl = 'http://localhost:8080/api/v1/webshop/order';
+  //private baseUrl = 'http://localhost:8080/api/v1/webshop/order';
+  private baseUrl = 'https://cloud-808233828339.europe-west3.run.app/api/v1/webshop/order';
 
   constructor(private http: HttpClient) {}
 
   // 🛍 Bestellung speichern
-  saveOrder(order: OrderDetails): Observable<OrderDetails> {
-    return this.http.post<OrderDetails>(`${this.baseUrl}/save`, order);
+  saveOrder(order: OrderDetailsDTO): Observable<OrderDetailsDTO> {
+    return this.http.post<OrderDetailsDTO>(`${this.baseUrl}/save`, order);
   }
 
   // 🔍 Bestellung per ID abrufen
@@ -27,8 +28,8 @@ export class OrderService {
   }
 
   // ✏️ Bestellung aktualisieren
-  updateOrder(id: number, order: OrderDetails): Observable<OrderDetails> {
-    return this.http.post<OrderDetails>(`${this.baseUrl}/update/${id}`, order);
+  updateOrder(id: number, order: OrderDetailsDTO): Observable<OrderDetailsDTO> {
+    return this.http.post<OrderDetailsDTO>(`${this.baseUrl}/update/${id}`, order);
   }
 
   // 🗑️ Bestellung löschen
