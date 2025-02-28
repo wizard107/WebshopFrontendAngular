@@ -57,8 +57,8 @@ export class ProductDetailComponent implements OnInit {
     return {
       category: undefined, color: '', inventory: undefined, material: '',
       id: 0,
-      name: 'Unbekanntes Produkt',
-      description: 'Dieses Produkt existiert nicht oder wurde entfernt.',
+      name: 'Unkonwn Product',
+      description: 'This Product does not exist or has been removed.',
       price: 0,
       imageId: 'assets/placeholder.jpg'
     };
@@ -66,7 +66,7 @@ export class ProductDetailComponent implements OnInit {
   addToCart(product: Product): void {
     console.log("add to cart", product);
     this.cartService.addToCart(product);
-    alert('Produkt wurde dem Warenkorb hinzugefügt!');
+    alert('Product has been added to the cart!');
   }
   // Increment quantity
   incrementQuantity(): void {

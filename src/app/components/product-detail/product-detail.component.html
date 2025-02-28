@@ -10,22 +10,22 @@
             <h1>{{ product.name }}</h1>
             <p class="product-description">{{ product.description }}</p>
 
-            <p><strong>Category:</strong> {{ product.category || 'Nicht angegeben' }}</p>
-            <p><strong>Material:</strong> {{ product.material || 'Nicht angegeben' }}</p>
-            <p><strong>Color:</strong> {{ product.color || 'Nicht angegeben' }}</p>
-            <p><strong>Height:</strong> {{ product.height || 'Nicht angegeben' }} x {{ product.width || 'Nicht angegeben' }} x {{ product.depth || 'Nicht angegeben' }} cm</p>
-            <p><strong>Weight:</strong> {{ product.weight || 'Nicht angegeben' }} kg</p>
+            <p><strong>Category:</strong> {{ product.category || 'Not specified' }}</p>
+            <p><strong>Material:</strong> {{ product.material || 'Not specified' }}</p>
+            <p><strong>Color:</strong> {{ product.color || 'Not specified' }}</p>
+            <p><strong>Height:</strong> {{ product.height || 'Not specified' }} x {{ product.width || 'Not specified' }} x {{ product.depth || 'Not specified' }} cm</p>
+            <p><strong>Weight:</strong> {{ product.weight || 'Not specified' }} kg</p>
 
             <p><strong>Availabilty:</strong>
                 <span [ngClass]="{'available': product.inventory && product.inventory.stock > 0, 'out-of-stock': product.inventory && product.inventory.stock === 0}">
-          {{ product.inventory && product.inventory.stock > 0 ? 'Auf Lager' : 'Nicht verfügbar' }}
+          {{ product.inventory && product.inventory.stock > 0 ? 'Available' : 'Out of Stock' }}
         </span>
             </p>
 
             <p class="product-price">{{ product.price | currency }}</p>
             <!-- Update the Add to Cart button -->
             <button class="add-to-cart-button" (click)="addToCart(product)" [disabled]="!product.inventory || product.inventory.stock === 0">
-                🛒 In den Warenkorb
+                🛒 Add to Cart
             </button>
             <!-- Add quantity selector -->
 
