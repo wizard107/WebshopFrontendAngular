@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-
+import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import {CartItem, CartService} from '../../services/CartService';
 import {CommonModule} from '@angular/common';
@@ -16,7 +16,7 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   cartItems: CartItem[] = [];
   private cartSubscription: Subscription | null = null;
 
-  constructor(private cartService: CartService, private productService: ProductService) {}
+  constructor(private cartService: CartService, private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     // Subscribe to cart items changes
@@ -59,4 +59,9 @@ export class ShoppingCartComponent implements OnInit, OnDestroy {
   getProductImageUrl(productId: number): string {
     return this.productService.getProductImageUrl(productId);
   }
+
+  navigateToCheckout() {
+    this.router.navigate(['/checkout']);
+  }
+
 }
