@@ -1,14 +1,9 @@
-import { Component } from '@angular/core';
-
-interface CartItem {
-  id: number;
-  name: string;
-  brand: string;
-  price: number;
-  image: string;
-  quantity: number;
-  reviews: number;
-}
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Router } from '@angular/router';
+import { Subscription } from 'rxjs';
+import {CartItem, CartService} from '../../services/CartService';
+import {CommonModule} from '@angular/common';
+import { ProductService } from '../../services/productService';
 
 @Component({
   selector: 'app-checkout',
@@ -18,29 +13,35 @@ interface CartItem {
   styleUrl: './checkout.component.scss'
 })
 export class CheckoutComponent {
-  cartItems: CartItem[] = [
-    {
-      id: 1,
-      name: 'Gepolsterter Sessel',
-      brand: 'BrandX',
-      price: 299.99,
-      image: 'assets/gepolsterter_sessel.jpg',
-      quantity: 2,
-      reviews: 120
-    },
-    {
-      id: 2,
-      name: 'Holzhocker',
-      brand: 'BrandY',
-      price: 89.99,
-      image: 'assets/holzhocker.jpg',
-      quantity: 1,
-      reviews: 85
+  cartItems: CartItem[] = [];
+  private cartSubscription: Subscription | null = null;
+
+  constructor(private cartService: CartService, private productService: ProductService, private router: Router) {}
+
+  ngOnInit(): void {
+    // Subscribe to cart items changes
+    this.cartSubscription = this.cartService.getCartItems().subscribe(items => {
+      this.cartItems = items;
+    });
+  }
+
+  ngOnDestroy(): void {
+    // Clean up subscription to prevent memory leaks
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
     }
-  ];
-  // Calculate total price of all items
+  }
+
   getTotalPrice(): string {
-    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    let total = 0;
+    for (const item of this.cartItems) {
+      total += item.product.price * item.quantity;
+    }
+    return total.toFixed(2);
+  }
+
+  getProductImageUrl(productId: number): string {
+    return this.productService.getProductImageUrl(productId);
   }
 }
 
