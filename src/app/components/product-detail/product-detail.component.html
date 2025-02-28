@@ -2,7 +2,7 @@
     <div class="product-container">
         <!-- Left Column: Product Image -->
         <div class="product-image-container">
-            <img [src]="product.imageId" alt="{{ product.name }}" class="product-image">
+            <img class="product-image" [src]="getProductImageUrl(product.id)" alt="{{ product.name }}" />
         </div>
 
         <!-- Right Column: Product Details -->
