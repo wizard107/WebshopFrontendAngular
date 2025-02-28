@@ -1,179 +1,244 @@
 .shopping-cart {
-    display: flex;
-    justify-content: space-between;
-    gap: 20px;
-    padding: 20px;
-    flex-wrap: wrap;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 20px;
+  flex-wrap: wrap;
+}
+
+/* Box around Cart Items */
+.cart-items {
+  flex: 2;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  margin-right: 20px;
+}
+
+.cart-items h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+/* Header Row */
+.cart-header {
+  display: grid;
+  grid-template-columns: 1fr 100px 100px;
+  font-weight: bold;
+  padding: 10px 0;
+  text-align: center;
+}
+
+/* Header Texts */
+.header-product {
+  text-align: left;
+}
+
+.header-quantity {
+  text-align: center;
+  margin-left: -180px;
+}
+
+.header-total {
+  text-align: center;
+  margin-left: -150px;
+}
+
+/* Divider Line */
+.cart-divider {
+  border: none;
+  height: 1px;
+  background: #ccc;
+  margin: 10px 0;
+}
+
+/* Cart Item Layout */
+.cart-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 100px 100px 50px;
+  align-items: center;
+  padding: 15px 0;
+  border-bottom: 1px solid #ddd;
+  gap: 20px;
+}
+
+.item-image {
+  width: 80px;
+  height: auto;
+  border-radius: 5px;
+}
+
+.item-details {
+  flex: 1;
+  padding-left: 15px;
+}
+
+.brand {
+  font-size: 12px;
+  color: #777;
+}
+
+.name {
+  font-size: 16px;
+  font-weight: bold;
+}
+
+.price {
+  font-size: 14px;
+  font-weight: bold;
+  color: #000;
+}
+
+.rating {
+  font-size: 14px;
+  color: #444;
+}
+
+.stars {
+  color: #ffcc00;
+}
+
+/* Quantity, Total, Remove Layout */
+.quantity,
+.total,
+.remove {
+  display: flex;
+  align-items: center;
+}
+
+.quantity {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #c7a962;
+  border-radius: 8px;
+  padding: 8px 15px;
+  background: white;
+  width: 100px;
+}
+
+/* Buttons inside Quantity */
+.quantity button {
+  background: none;
+  border: none;
+  font-size: 20px;
+  color: #333;
+  cursor: pointer;
+  padding: 5px 10px;
+}
+
+/* Style for the quantity number */
+.quantity span {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  min-width: 20px;
+}
+
+/* Total Price Alignment */
+.total {
+  font-weight: bold;
+  min-width: 80px;
+  text-align: right;
+  margin-top: 15px;
+}
+
+/* Remove Button */
+.remove {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+}
+
+.remove-icon {
+  width: 24px;
+  height: auto;
+  content: url('/assets/icons/bin.png');
+}
+
+/* Box around Order Summary */
+.order-summary {
+  flex: 1;
+  background: #fff;
+  padding: 20px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+  text-align: center;
+}
+
+.order-summary h3 {
+  display: flex;
+  justify-content: space-between;
+  font-size: 20px;
+}
+
+.order-summary input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.apply-voucher {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  margin-top: 5px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+.order-summary p {
+  font-size: 14px;
+  color: #666;
+  margin-top: 10px;
+}
+
+.checkout {
+  width: 100%;
+  background: #000;
+  color: #fff;
+  padding: 12px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 10px;
+}
+
+.secure-payment {
+  font-size: 12px;
+  margin-top: 10px;
+}
+
+.secure-payment a {
+  color: #000;
+  text-decoration: underline;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .shopping-cart {
+    flex-direction: column;
   }
-  
-  .cart-items {
-    flex: 2;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-  }
-  
-  .cart-items h2 {
-    font-size: 24px;
-    margin-bottom: 20px;
-  }
-  
+
   .cart-item {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 15px 0;
-    border-bottom: 1px solid #ddd;
-    gap: 20px;
+    grid-template-columns: 80px 1fr 1fr;
+    gap: 10px;
   }
-  
-  .item-image {
-    width: 80px;
-    height: auto;
-    border-radius: 5px;
+
+  .cart-items {
+    margin-right: 0;
   }
-  
-  .item-details {
-    flex: 1;
-    padding-left: 15px;
-  }
-  
-  .brand {
-    font-size: 12px;
-    color: #777;
-  }
-  
-  .name {
-    font-size: 16px;
-    font-weight: bold;
-  }
-  
-  .price {
-    font-size: 14px;
-    font-weight: bold;
-    color: #000;
-  }
-  
-  .rating {
-    font-size: 14px;
-    color: #444;
-  }
-  
-  .stars {
-    color: #ffcc00;
-  }
-  
-  /* Ensuring quantity, total, and remove are properly aligned */
-  .quantity,
-  .total,
-  .remove {
-    display: flex;
-    align-items: center;
-  }
-  
-  .quantity {
-    gap: 8px;
-    margin-right: 20px;
-  }
-  
-  .quantity button {
-    background: #f5f5f5;
-    border: 1px solid #ccc;
-    padding: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .total {
-    font-weight: bold;
-    margin-right: 20px;
-    margin-top: 15px;
-  }
-  
-  .remove {
-    background: none;
-    border: none;
-    cursor: pointer;
-    display: flex;
-    align-items: center;
-  }
-  
-  .remove-icon {
-    width: 24px;
-    height: auto;
-    content: url('/assets/icons/bin.png');
-  }
-  
-  /* Order summary section */
+
   .order-summary {
-    flex: 1;
-    background: #fff;
-    padding: 20px;
-    border-radius: 10px;
-    text-align: center;
-  }
-  
-  .order-summary h3 {
-    display: flex;
-    justify-content: space-between;
-    font-size: 20px;
-  }
-  
-  .order-summary input {
     width: 100%;
-    padding: 8px;
-    margin-top: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    margin-top: 20px;
   }
-  
-  .apply-voucher {
-    width: 100%;
-    background: #000;
-    color: #fff;
-    padding: 8px;
-    margin-top: 5px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-  }
-  
-  .order-summary p {
-    font-size: 14px;
-    color: #666;
-    margin-top: 10px;
-  }
-  
-  .checkout {
-    width: 100%;
-    background: #000;
-    color: #fff;
-    padding: 12px;
-    font-size: 16px;
-    border: none;
-    cursor: pointer;
-    border-radius: 5px;
-    margin-top: 10px;
-  }
-  
-  .secure-payment {
-    font-size: 12px;
-    margin-top: 10px;
-  }
-  
-  .secure-payment a {
-    color: #000;
-    text-decoration: underline;
-  }
-  
-  /* Responsive Design */
-  @media (max-width: 768px) {
-    .shopping-cart {
-      flex-direction: column;
-    }
-  
-    .order-summary {
-      width: 100%;
-    }
-  }
-  
+}
