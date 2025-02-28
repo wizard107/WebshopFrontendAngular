@@ -2,7 +2,7 @@ import { Component, HostListener, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { Product } from '../../model/product';
 import { ProductCategories } from '../../model/enums/product-categories';
-import {ProductService} from '../../services/productService';
+import { ProductService } from '../../services/productService';
 
 @Component({
   selector: 'app-product-catalog',
@@ -15,7 +15,6 @@ export class ProductCatalogComponent implements OnInit {
   products: Product[] = [];
   baseImageUrl = 'https://storage.googleapis.com/webshop-images/products/';
   categoryTitle: string = 'ALL PRODUCTS';
-
 
   displayedProducts = this.products.slice();
   filteredProducts = this.products.slice();
@@ -36,19 +35,43 @@ export class ProductCatalogComponent implements OnInit {
   };
   filters = [
     { name: 'Price', open: false, options: [{ name: '$0-$50', selected: false }, { name: '$50-$100', selected: false }, { name: '$100-$500', selected: false }, { name: '$500+', selected: false }] },
-    { name: 'Color', open: false, options: [{ name: 'light-beige', selected: false }, { name: 'beige', selected: false }, { name: 'white', selected: false }, { name: 'brown', selected: false }] },
-    { name: 'Category', open: false, options: [{ name: 'Tables', selected: false }, { name: 'Sofas', selected: false }, { name: 'Desks', selected: false }, { name: 'Bedroom Furniture', selected: false }] },
+    { name: 'Color', open: false, options: [] },
+    { name: 'Category', open: false, options: [
+      { name: 'Tables', selected: false },
+      { name: 'Chairs', selected: false },
+      { name: 'Beds', selected: false },
+      { name: 'Sofas', selected: false },
+      { name: 'Desks', selected: false },
+      { name: 'Bedroom Furniture', selected: false },
+      { name: 'Outdoor Furniture', selected: false }
+    ]},
     { name: 'Height', open: false, options: [{ name: '<50cm', selected: false }, { name: '50cm-100cm', selected: false }, { name: '100cm+', selected: false }] },
     { name: 'Width', open: false, options: [{ name: '<50cm', selected: false }, { name: '50cm-100cm', selected: false }, { name: '100cm+', selected: false }] },
     { name: 'Depth', open: false, options: [{ name: '<30cm', selected: false }, { name: '30cm-50cm', selected: false }, { name: '50cm+', selected: false }] },
   ];
+  categoryMap: { [key: string]: ProductCategories } = {
+    'Tables': ProductCategories.TABLES,
+    'Chairs': ProductCategories.CHAIRS,
+    'Beds': ProductCategories.BEDS,
+    'Sofas': ProductCategories.SOFAS,
+    'Desks': ProductCategories.DESKS,
+    'Bedroom Furniture': ProductCategories.BEDROOM_FURNITURE,
+    'Outdoor Furniture': ProductCategories.OUTDOOR_FURNITURE
+  };
+  enumerationCategoryMap: {[key: string]: ProductCategories} = {
+    "TABLES": ProductCategories.TABLES,
+    "CHAIRS": ProductCategories.CHAIRS,
+    "BEDS": ProductCategories.BEDS,
+    "SOFAS": ProductCategories.SOFAS,
+    "DESKS": ProductCategories.DESKS,
+    "BEDROOM_FURNITURE": ProductCategories.BEDROOM_FURNITURE,
+    "OUTDOOR_FURNITURE": ProductCategories.OUTDOOR_FURNITURE
+  };
 
   constructor(
     private productService: ProductService,
     private route: ActivatedRoute
   ) { }
-
-
 
   ngOnInit() {
     this.loadProducts();
@@ -75,6 +98,9 @@ export class ProductCatalogComponent implements OnInit {
         this.displayedProducts = this.products.slice();
         this.filteredProducts = this.products.slice();
 
+        // Generate dynamic filter options
+        this.generateFilterOptions();
+
         // Check for category query param again here to ensure products are loaded
         this.route.queryParams.subscribe(params => {
           const category = params['category'];
@@ -89,25 +115,26 @@ export class ProductCatalogComponent implements OnInit {
     });
   }
 
+  generateFilterOptions() {
+    const colors = new Set<string>();
+
+    this.products.forEach(product => {
+      colors.add(product.color);
+    });
+
+    const colorFilter = this.filters.find(f => f.name === 'Color');
+    if (colorFilter) {
+      colorFilter.options = Array.from(colors).map(color => ({ name: color, selected: false }));
+    }
+  }
+
   handleCategoryFilter(category: string) {
     // Set the category title
     this.categoryTitle = category.toUpperCase();
 
-    // Map the URL parameter to the enum value
-    const categoryMap: { [key: string]: ProductCategories } = {
-      'tables': ProductCategories.TABLES,
-      'chairs': ProductCategories.CHAIRS,
-      'beds': ProductCategories.BEDS,
-      'sofas': ProductCategories.SOFAS,
-      'desks': ProductCategories.DESKS,
-      'bedroom-furniture': ProductCategories.BEDROOM_FURNITURE
-    };
-
-    const categoryEnum = categoryMap[category.toLowerCase()];
-
-    if (categoryEnum) {
+    if (category) {
       // Filter the products by category
-      this.filteredProducts = this.products.filter(product => product.category === categoryEnum);
+      this.filteredProducts = this.products.filter(product => this.enumerationCategoryMap[product.category] === this.categoryMap[category]);
       this.displayedProducts = this.filteredProducts.slice();
 
       // Optionally, also set the category filter checkbox
@@ -220,13 +247,7 @@ export class ProductCatalogComponent implements OnInit {
           case 'Color':
             return selectedOptions.includes(product.color);
           case 'Category':
-            const categoryMap: { [key: string]: ProductCategories } = {
-              'Sofas': ProductCategories.SOFAS,
-              'Tables': ProductCategories.TABLES,
-              'Bedroom Furniture': ProductCategories.BEDROOM_FURNITURE,
-              'Desks': ProductCategories.DESKS
-            };
-            return selectedOptions.some(option => product.category === categoryMap[option]);
+            return selectedOptions.some(option => this.enumerationCategoryMap[product.category] === this.categoryMap[option]);
           case 'Height':
             return selectedOptions.some(option => {
               if (option === '<50cm') return product.height < 50;
