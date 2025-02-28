@@ -15,7 +15,14 @@ import { ProductCatalogComponent } from './components/product-catalog/product-ca
 import { BedsBannerComponent } from './components/main-page/beds-banner/beds-banner.component';
 import { ChairsBannerComponent } from './components/main-page/chairs-banner/chairs-banner.component';
 import { TablesBannerComponent } from './components/main-page/tables-banner/tables-banner.component';
-import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';
+import { AddressComponent } from './components/checkout/address/address.component';
+import { PaymentComponent } from './components/checkout/payment/payment.component';
+import { OrderReviewComponent } from './components/order-review/order-review.component';
+import { OrderConfirmationComponent } from './components/order-confirmation/order-confirmation.component';
+import {ProductDetailComponent} from './components/product-detail/product-detail.component';
+import {CartService} from './services/CartService';
+import {CommonModule} from '@angular/common';
 
 // Material Components
 
@@ -31,14 +38,21 @@ import { ShoppingCartComponent } from './components/shopping-cart/shopping-cart.
     BedsBannerComponent,
     ChairsBannerComponent,
     TablesBannerComponent,
-    ShoppingCartComponent
+    ProductDetailComponent,
+    CheckoutComponent,
+    AddressComponent,
+    PaymentComponent,
+    OrderReviewComponent,
+    OrderConfirmationComponent,
+    ProductDetailComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    CommonModule
   ],
-  providers: [provideHttpClient(), provideAnimationsAsync()],
+  providers: [provideHttpClient(), provideAnimationsAsync(),CartService,],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

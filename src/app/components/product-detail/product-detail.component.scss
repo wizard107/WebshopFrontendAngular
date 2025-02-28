@@ -1,0 +1,116 @@
+.product-detail {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5vw; /* Dynamischer Abstand */
+}
+
+.product-container {
+  display: flex;
+  flex-direction: row; /* Bild und Text nebeneinander */
+  align-items: center;
+  gap: 3vw; /* Abstand zwischen Bild und Text */
+  width: 80vw; /* 80% der Bildschirmbreite */
+  max-width: 1200px; /* Begrenzung auf große Screens */
+  background: #FAF9F6;
+  padding: 2vw;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.product-image-container {
+  flex: 1;
+  max-width: 40%; /* Bild nimmt bis zu 40% der Breite ein */
+}
+
+.product-image {
+  width: 100%;
+  height: auto;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-info {
+  flex: 1;
+  text-align: left;
+  max-width: 50%;
+}
+
+h1 {
+  font-size: 2vw; /* Dynamische Schriftgröße */
+  margin-bottom: 1vw;
+}
+
+.product-description {
+  font-size: 1.5vw;
+  color: #555;
+  margin-bottom: 1vw;
+}
+
+.product-price {
+  font-size: 1.8vw; /* Adjusts dynamically */
+  font-weight: bold;
+  color: #333; /* Use a neutral dark color */
+  margin-bottom: 1.5vw;
+}
+.add-to-cart-button {
+  background-color: rgba(124, 177, 126, 0.6);
+  color: white;
+  padding: 1vw 2vw;
+  font-size: 1.5vw;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+
+  &:hover {
+    background-color: #218838;
+    transform: scale(1.05);
+  }
+}
+
+/* Responsives Design für kleinere Bildschirme */
+@media (max-width: 768px) {
+  .product-container {
+    flex-direction: column;
+    text-align: center;
+    width: 90vw; /* Mehr Platz auf kleineren Bildschirmen */
+  }
+
+  .product-image-container {
+    max-width: 100%;
+  }
+
+  .product-info {
+    max-width: 100%;
+    text-align: left;
+  }
+
+  h1 {
+    font-size: 5vw;
+  }
+
+  .product-description, .product-price {
+    font-size: 4vw;
+  }
+
+  .add-to-cart-button {
+    font-size: 4vw;
+    padding: 2vw 4vw;
+  }
+}
+.available {
+  color: green;
+  font-weight: bold;
+}
+
+.out-of-stock {
+  color: red;
+  font-weight: bold;
+}
+.add-to-cart-button {
+  &:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+  }
+}

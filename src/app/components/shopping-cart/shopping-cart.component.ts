@@ -1,64 +1,57 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
-
-interface CartItem {
-  id: number;
-  name: string;
-  brand: string;
-  price: number;
-  image: string;
-  quantity: number;
-  reviews: number;
-}
+import { Subscription } from 'rxjs';
+import {CartItem, CartService} from '../../services/CartService';
+import {CommonModule} from '@angular/common';
 
 @Component({
   selector: 'app-shopping-cart',
-  standalone: false,
-  
   templateUrl: './shopping-cart.component.html',
-  styleUrl: './shopping-cart.component.scss'
+  styleUrls: ['./shopping-cart.component.scss'],
+  standalone: true,
+  imports: [CommonModule]
 })
-export class ShoppingCartComponent {
-  cartItems: CartItem[] = [
-    {
-      id: 1,
-      name: 'Gepolsterter Sessel',
-      brand: 'BrandX',
-      price: 299.99,
-      image: 'assets/gepolsterter_sessel.jpg',
-      quantity: 1,
-      reviews: 120
-    },
-    {
-      id: 2,
-      name: 'Holzhocker',
-      brand: 'BrandY',
-      price: 89.99,
-      image: 'assets/holzhocker.jpg',
-      quantity: 1,
-      reviews: 85
-    }
-  ];
+export class ShoppingCartComponent implements OnInit, OnDestroy {
+  cartItems: CartItem[] = [];
+  private cartSubscription: Subscription | null = null;
 
-  // Increase quantity
-  increaseQuantity(item: CartItem): void {
-    item.quantity++;
+  constructor(private cartService: CartService) {}
+
+  ngOnInit(): void {
+    // Subscribe to cart items changes
+    this.cartSubscription = this.cartService.getCartItems().subscribe(items => {
+      this.cartItems = items;
+    });
   }
 
-  // Decrease quantity
+  ngOnDestroy(): void {
+    // Clean up subscription to prevent memory leaks
+    if (this.cartSubscription) {
+      this.cartSubscription.unsubscribe();
+    }
+  }
+
+  increaseQuantity(item: CartItem): void {
+    this.cartService.updateQuantity(item.product.id, item.quantity + 1);
+  }
+
   decreaseQuantity(item: CartItem): void {
     if (item.quantity > 1) {
-      item.quantity--;
+      this.cartService.updateQuantity(item.product.id, item.quantity - 1);
+    } else {
+      this.removeItem(item);
     }
   }
 
-  // Remove an item from cart
   removeItem(item: CartItem): void {
-    this.cartItems = this.cartItems.filter(cartItem => cartItem.id !== item.id);
+    this.cartService.removeFromCart(item.product.id);
   }
 
-  // Calculate total price of all items
   getTotalPrice(): string {
-    return this.cartItems.reduce((total, item) => total + item.price * item.quantity, 0).toFixed(2);
+    let total = 0;
+    for (const item of this.cartItems) {
+      total += item.product.price * item.quantity;
+    }
+    return total.toFixed(2);
   }
 }

@@ -1,0 +1,30 @@
+<div class="checkout-container">
+    <div class="checkout-section">
+      <h2>Checkout</h2>
+      <app-address></app-address>
+      <app-payment></app-payment>
+        <div class="button-group">
+         <button class="backs" [routerLink]="['/shopping-cart']">Back to Cart</button>
+          <button class="confirm" [routerLink]="['/order-review']">Order Review</button>
+        </div>
+    </div>
+
+    <div class="cart-section">
+      <h2>Cart Items</h2>
+      <div class="cart-item" *ngFor="let item of cartItems">
+        <img [src]="item.image" [alt]="item.name" class="item-image" />
+        <div class="item-details">
+          <p class="brand">{{ item.brand }}</p>
+          <h3 class="name">{{ item.name }}</h3>
+          <p class="price">${{ item.price.toFixed(2) }}</p>
+          <p class="quantity">Quantity: {{ item.quantity }}</p>
+        </div>
+        <p class="total">${{ (item.price * item.quantity).toFixed(2) }}</p>
+      </div>
+      <h2>Total <span>${{ getTotalPrice() }}</span></h2>
+    </div>
+
+
+
+
+  </div>
